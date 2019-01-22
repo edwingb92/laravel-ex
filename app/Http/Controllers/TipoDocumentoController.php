@@ -19,9 +19,7 @@ class TipoDocumentoController extends Controller
      */
     public function index(Request $request)
     {
-        $nombre=$request->get('nombreb');
-
-        $tiposdocumento=TipoDocumento::orderBy('id','DESC')->nombre($nombre)->paginate(7);
+        $tiposdocumento=TipoDocumento::orderBy('id','DESC')->get();
         return view('TipoDocumento.index',compact('tiposdocumento')); 
 
     }

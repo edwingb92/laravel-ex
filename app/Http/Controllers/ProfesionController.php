@@ -19,9 +19,7 @@ class ProfesionController extends Controller
      */
     public function index(Request $request)
     {
-        $nombre=$request->get('nombreb');
-
-        $profesiones=Profesion::orderBy('id','DESC')->nombre($nombre)->paginate(7);
+        $profesiones=Profesion::orderBy('id','DESC')->get();
         return view('Profesion.index',compact('profesiones')); 
 
     }

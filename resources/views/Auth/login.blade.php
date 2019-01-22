@@ -1,4 +1,5 @@
 @extends('layouts.login') 
+@section('titulo','Iglesia Cristiana Cuadrangular de Tame')
 @section('formulario')
 <div class="card-body">
     <form method="POST" action="{{ route('login') }}">

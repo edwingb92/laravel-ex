@@ -32,21 +32,21 @@ class RequestMinisterio extends FormRequest
 		        return [];
 	        case 'POST': {
 	        	return [
-                    'nombre' => 'required|min:3|max:30|unique:ministerio,nombre',
+                    'nombre' => 'required|min:3|max:100|unique:ministerio,nombre',
                     'descripcion' => 'required|min:5',
                     'fotoministerio' => 'sometimes|image|mimes:jpg,jpeg,png,gif',
 		        ];
 	        }
 	        case 'PATCH': {                
                 return [
-                    'nombre' => 'required|min:3|max:30|unique:ministerio,nombre,'.$this->id.',id',
+                    'nombre' => 'required|min:3|max:100|unique:ministerio,nombre,'.$this->id.',id',
                     'descripcion' => 'required|min:5',
                     'fotoministerio' => 'sometimes|image|mimes:jpg,jpeg,png,gif',
 		        ];
             }
             case 'PUT': {                
                 return [
-                    'nombre' => 'required|min:3|max:30|unique:ministerio,nombre,'.$this->id.',id',
+                    'nombre' => 'required|min:3|max:100|unique:ministerio,nombre,'.$this->id.',id',
                     'descripcion' => 'required|min:7',
                     'fotoministerio' => 'sometimes|image|mimes:jpg,jpeg,png,gif',
 		        ];

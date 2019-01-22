@@ -50,9 +50,12 @@
                     <div class="border-left-warning border-right-3 text-black font-small-3">&nbsp<span class="icon-phone primary position-relative valign-bottom"></span> {{ $miembro->telefono ===
                         null ? $miembro->celular : $miembro->celular.' - '.$miembro->telefono}}</div>
                 </div>
-                <div class="row">
-                    <div class="border-left-red border-right-3 text-black font-small-3">&nbsp<span class="icon-envelop primary position-relative valign-bottom"></span> {{ $miembro->email ===
-                        null ? ' ' : $miembro->email}}</div>
+                <div class="row"><div class="border-left-red border-right-3 text-black font-small-3"> &nbsp;
+                        @isset($miembro->email)
+                   <span class="icon-envelop primary position-relative valign-bottom"></span> {{ $miembro->email ===
+                        null ? ' ' : $miembro->email}}
+                        @endisset
+                    </div>
                 </div>
             </div>
             <hr>

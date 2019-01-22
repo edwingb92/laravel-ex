@@ -1,24 +1,10 @@
 @extends('layouts.layout') 
-@section('titulo', "Lista de Estados de Membresía") 
+@section('titulo')
+<h4 class="display-inline-block">Estados de Membresía</h4>&nbsp; @include('partials.botonnuevo')
+@endsection
 @section('contenido')
 <div class="col-xl-6 col-lg-12">
   
- 
-  <form class="form" method="get" open="{{ route('EstadoMembresia.index') }}" role="form">
-    {{ csrf_field() }}
-    <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6">
-        <div class="form-group right">
-          <input type="text" name="nombreb" id="nombreb" class="form-control border-primary" value="{{ old('nombreb') }}" placeholder="Nombre">
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group">
-          <input type="submit" value="Buscar" class="btn btn-primary mr-1">
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Nuevo</button>
-        </div>
-      </div>
-  </form>
   
   <table id="mytable" class="table table-hover">
     <thead class="bg-grey bg-lighten-4 thead-light ">
@@ -44,7 +30,6 @@
       @endif
     </tbody>
   </table>
-  {{ $estadosmembresia->links() }}
   </div>
 
   

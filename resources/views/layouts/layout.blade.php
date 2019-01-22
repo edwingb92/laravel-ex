@@ -2,6 +2,8 @@
 <html lang="es">
 
 <head>
+	<title>Iglesia Cristiana Cuadrangular de Tame</title>
+	<link rel="icon" type="image/png" href="{{asset('images/logo/robust-logo-small.png')}}" sizes="32x32">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 
@@ -34,6 +36,7 @@
 	<!-- END Custom CSS-->
 	<!-- BEGIN Toastr CSS-->
 	<link href="{{ asset('toastr/toastr.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet" type="text/css">
 	<!-- END Toastr CSS-->
 
 </head>
@@ -91,17 +94,24 @@
 				<li class="active"><a href="{{ url('/') }}"><i class="icon-home3"></i><span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Inicio</span></a></li>
 
 				<li><a href="{{ url('/Ministerio') }}"><i class="icon-texture"></i> <span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Ministerios</span></a></li>
-				<li><a href="{{ url('/Miembros') }}"><i class="icon-group"></i> <span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Miembros</span></a></li>
-
+				<li><a href="{{ url('/Miembros') }}"><i class="icon-users2"></i> <span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Miembros</span></a></li>
+				<li><a href="{{ url('/Familia') }}"><i class="icon-group"></i> <span data-i18n="nav.form_layouts.form_layout_basic" class="menu-title">Familias</span></a></li>
+				<li class=" nav-item"><a href=""><i class="icon-clipboard2"></i><span data-i18n="nav.dash.main" class="menu-title">Inventario</span></a>
+					<ul class="menu-content">
+							<li class=""><a href="{{ url('/Articulos') }}" data-i18n="nav.dash.main" class="menu-item">Artículos</a></li>
+							<li class=""><a href="{{ url('/CategoriaInventario') }}" data-i18n="nav.dash.main" class="menu-item">Categorias</a></li>
+							<li class=""><a href="{{ url('/AlmacenInventario') }}" data-i18n="nav.dash.main" class="menu-item">Almacenes</a></li>
+					</ul>
+				</li>
 				<li class=" nav-item"><a href=""><i class="icon-cogs2"></i><span data-i18n="nav.dash.main" class="menu-title">Mantenimiento</span><span class="tag tag tag-primary tag-pill float-xs-right mr-2">2</span></a>
 					<ul class="menu-content">
-						<li class="active"><a href="{{ url('/ClasificacionSocial') }}" data-i18n="nav.dash.main" class="menu-item">Clasificación Social</a></li>
+						<li class=""><a href="{{ url('/ClasificacionSocial') }}" data-i18n="nav.dash.main" class="menu-item">Clasificación Social</a></li>
 						<li class=""><a href="{{ url('/EstadoCivil') }}" data-i18n="nav.dash.main" class="menu-item">Estado Civil</a></li>
-						<li class=""><a href="{{ url('/TipoPersona') }}" data-i18n="nav.dash.main" class="menu-item">Tipos de Persona</a></li>
+						<li class=""><a href="{{ url('/DonServicio') }}" data-i18n="nav.dash.main" class="menu-item">Dones de Servicio</a></li>
 						<li class=""><a href="{{ url('/EstadoMembresia') }}" data-i18n="nav.dash.main" class="menu-item">Estados de Membresía</a></li>
 						<li class=""><a href="{{ url('/TipoDocumento') }}" data-i18n="nav.dash.main" class="menu-item">Tipos de Documento</a></li>
-						<li class=""><a href="{{ url('/Profesion') }}" data-i18n="nav.dash.main" class="menu-item">Profesiones</a></li>
-						<li class=""><a href="{{ url('/Familia') }}" data-i18n="nav.dash.main" class="menu-item">Familias</a></li>
+						<li class=""><a href="{{ url('/Profesion') }}" data-i18n="nav.dash.main" class="menu-item">Profesiones</a></li>						
+						
 					</ul>
 				</li>
 
@@ -176,9 +186,12 @@
 
 	<!-- BEGIN Toastr-->
 	<script src="{{ asset('toastr/toastr.js')}}" type="text/javascript"></script>
+	<script src="{{ asset('js/core/datatables.min.js')}}" type="text/javascript"></script>
+
 	<!-- END PAGE LEVEL JS-->
 
-
+	
+			
 	<script>//funcion para agregar imagenes al select y para buscar
 function format (option) {
 			if (!option.id) { return option.text; }
@@ -203,6 +216,75 @@ function format (option) {
 			}
 	});
 //
+
+
+$(document).ready(function() {
+    var table = $('#mytable').DataTable( {
+		language: {
+        url: '{{ asset('js/core/datatablespanish.json')}}'
+	},
+	"drawCallback": function () {
+            $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+        },
+        lengthChange: true,
+    } );		
+	
+} );
+
+//ejemplos que no se utilizan pero que pueden servir mas adelante
+$(document).ready(function() {
+    var table = $('#mytables').DataTable( {
+		language: {
+        url: '{{ asset('js/core/datatablespanish.json')}}'
+	},
+	"drawCallback": function () {
+            $('.dataTables_paginate > .pagination').addClass('pagination-sm');
+        },
+        lengthChange: true,
+		dom: 'Bflrtip',
+    buttons: [
+		{
+                    extend: 'pdf',
+                    text: 'Pdf',
+					className: 'btn btn-outline-primary',
+					exportOptions: {
+                    columns: ':visible'
+                } 
+                },
+                {
+                    extend: 'excel',
+                    text: 'Excel',
+					className: 'btn btn-outline-primary',
+					exportOptions: {
+                    columns: ':visible'
+                } 
+                },
+                {
+                    extend: 'print',
+                    text: 'Imprimir',
+					className: 'btn btn-outline-primary',
+					exportOptions: {
+                    columns: ':visible'
+                } 
+                },
+				{
+                    extend: 'colvis',
+                    text: 'Columnas',
+					className: 'btn btn-outline-primary' 
+                }
+    ]
+    } );
+} );
+
+var dtage = $('#dt-range').DataTable();
+
+
+// Escucha de eventos a las dos entradas de filtrado de rango para volver a dibujar en la entrada
+    $('#min, #max').keyup(function() {
+        dtage.draw();
+    });
+//fin de ejemploss
+
 
 //funcion para agregar imagenes al select y para buscar
 function format (option) {
@@ -234,6 +316,7 @@ $("#profesioncombo").select2({
 	theme: "bootstrap",
 	
   });
+
 	</script>
 
 </body>
@@ -394,6 +477,51 @@ for(var i in errores){
 
 @endif
 
+</script>
+
+
+<script>
+	//Logica que permite calcular valor total en el formulario de Articulo
+$(document).ready(function () {
+    $("#preciounitario").keyup(function () {
+        var preciounitario = $(this).val();
+		var cantidad = $("#cantidad").val();
+		if(preciounitario>0)
+		{
+			if(cantidad>0)
+			{
+				var total = cantidad*preciounitario;
+			}else 
+			{
+				var total = null;
+			}		
+		}else
+		{
+			var total = null;
+		}
+		
+		
+        $("#preciototal").val(total);
+    });
+	$("#cantidad").keyup(function () {
+        var cantidad = $(this).val();
+		var preciounitario = $("#preciounitario").val();
+		if(cantidad>0)
+		{
+			if(preciounitario>0)
+			{
+				var total = cantidad*preciounitario;
+			}else
+			{
+				var total = null;
+			}		
+		}else
+		{
+			var total = null;
+		}
+        $("#preciototal").val(total);
+    });
+});
 </script>
 
 </html>

@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::resource('ClasificacionSocial', 'ClasificacionSocialController', ['except' => 'show','create','edit']);
 Route::resource('EstadoCivil', 'EstadoCivilController', ['except' => 'show','create','edit']);
-Route::resource('TipoPersona', 'TipoPersonaController', ['except' => 'show','create','edit']);
+Route::resource('DonServicio', 'TipoPersonaController', ['except' => 'show','create','edit']);
 Route::resource('EstadoMembresia', 'EstadoMembresiaController', ['except' => 'show','create','edit']);
 Route::resource('TipoDocumento', 'TipoDocumentoController', ['except' => 'show','create','edit']);
 Route::resource('Profesion', 'ProfesionController', ['except' => 'show','create','edit']);
@@ -30,9 +30,12 @@ Route::resource('DetalleFamilia', 'DetalleFamiliaController', ['except' => 'show
 Route::resource('Observacion', 'ObservacionController', ['except' => 'show','create','edit','index']);
 Route::resource('DetalleMinisterio', 'DetalleMinisterioController', ['except' => 'show','create','edit','index','update']);
 Route::resource('RolMinisterio', 'RolMinisterioController', ['except' => 'show','create','edit','index']);
+Route::resource('CategoriaInventario', 'CategoriaInventarioController', ['except' => 'show','create','edit']);
+Route::resource('AlmacenInventario', 'AlmacenInventarioController', ['except' => 'show','create','edit']);
 
 
 Route::resource('Miembros', 'MiembroController');
+Route::resource('Articulos', 'ArticuloController');
 Route::resource('Ministerio', 'MinisterioController');
 
 Route::get('login', 'Auth\LoginController@showLoginForm');

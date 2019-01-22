@@ -29,7 +29,7 @@
         <img alt="Avatar" class="card-img-top img-fluid" src="{{ Storage::url($ministerio->fotoministerio)}}" style="width:100%">        @endif
         </a>
         <div class="card-block">
-          <h4 class="card-title display-inline-block">{{$ministerio->nombre}}</h4>
+          <a href="{{action('MinisterioController@show', $ministerio->id)}}"><h4 class="card-title display-inline-block">{{$ministerio->nombre}}</h4></a>
           <button type="button" class="btn btn-outline-info btn-sm display-inline-block" data-id={{$ministerio->id}} 
                 data-nombre="{{$ministerio->nombre}}"
                 data-descripcion="{{ $ministerio->descripcion === null ? null : $ministerio->descripcion}}"
@@ -59,7 +59,7 @@
             @if($ministerio->detalleministerio->count())
             <div role="tabpanel" class="tab-pane active" id="ta{{$ministerio->id}}" aria-expanded="true" aria-labelledby="base-tab1">
 
-              @foreach($ministerio->detalleministerio as $detalleministerio) @if (empty($detalleministerio->miembro->fotoperfil))
+              @foreach($ministerio->detalleministerio->unique('miembros_id') as $detalleministerio) @if (empty($detalleministerio->miembro->fotoperfil))
               <a href="{{action('MiembroController@show', 1)}}">
                                <img alt="Avatar" class="md-avatar rounded-circle" src="{{ Storage::url($detalleministerio->miembro->avatars->url)}}" >
                                </a> @else
@@ -166,7 +166,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Nuevo Tipo de Persona</h4>
+          <h4 class="modal-title" id="myModalLabel">Nuevo Ministerio</h4>
         </div>
         <form action="{{route('Ministerio.store')}}" method="post" enctype="multipart/form-data">
           {{csrf_field()}}

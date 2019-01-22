@@ -19,9 +19,7 @@ class TipoPersonaController extends Controller
      */
     public function index(Request $request)
     {
-        $nombre=$request->get('nombreb');
-
-        $tipospersona=TipoPersona::orderBy('id','DESC')->nombre($nombre)->paginate(7);
+        $tipospersona=TipoPersona::orderBy('id','DESC')->get();
         return view('TipoPersona.index',compact('tipospersona')); 
 
     }
@@ -40,7 +38,7 @@ class TipoPersonaController extends Controller
             'alert-type' => 'info'
         );
 
-        return redirect()->route('TipoPersona.index')->with($notification);
+        return redirect()->route('DonServicio.index')->with($notification);
     }
     /**
      * Update the specified resource in storage.
@@ -60,7 +58,7 @@ class TipoPersonaController extends Controller
             'alert-type' => 'info'
         );
 
-        return redirect()->route('TipoPersona.index')->with($notification);
+        return redirect()->route('DonServicio.index')->with($notification);
     }
 
     /**
@@ -77,6 +75,6 @@ class TipoPersonaController extends Controller
             'message' => 'Registro eliminado correctamente',
             'alert-type' => 'info'
         );
-        return redirect()->route('TipoPersona.index')->with($notification);
+        return redirect()->route('DonServicio.index')->with($notification);
     }
 }

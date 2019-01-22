@@ -231,7 +231,7 @@
 		</div>
 		<div class="col-lg-3 col-md-6">
 			<div class="form-group">
-				<label for="tipopersona_id">Tipo Persona</label>
+				<label for="tipopersona_id">Don de Servicio</label>
 						<select name="tipopersona_id" id="tipopersona_id" class="form-control{{ $errors->has('tipopersona_id') ? ' is-invalid' : ' border-primary' }}">
 								<option></option>
 								@foreach(\App\TipoPersona::pluck('nombre', 'id') as $id => $tipopersona)

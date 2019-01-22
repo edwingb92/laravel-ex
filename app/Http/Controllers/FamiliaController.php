@@ -21,9 +21,7 @@ class FamiliaController extends Controller
      */
     public function index(Request $request)
     {
-        $nombre=$request->get('nombreb');
-
-        $familias=Familia::orderBy('id','DESC')->nombre($nombre)->paginate(7);
+        $familias=Familia::orderBy('id','DESC')->paginate(10);
         return view('Familia.index',compact('familias')); 
 
     }

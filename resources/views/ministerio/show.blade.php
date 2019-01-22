@@ -91,7 +91,7 @@
           <img class="avatarf roundedm-circle btn-outline-primary" src="{{ Storage::url($miembrosd->fotoperfil)}}" alt=""></a>                  @endif
                 </td>
                 <td>{{title_case($miembrosd->nombre.' '.$miembrosd->apellido1)}}</td>
-                <td>@foreach($miembrosd->detalleministerio as $detalleministerio) <div class="tag tag-primary">{{$detalleministerio->rol->nombre}}</div> @endforeach</td>
+                <td>@foreach($miembrosd->detalleministerio as $detalleministerio) <a href="{{action('MinisterioController@show', $detalleministerio->ministerio_id)}}"><div class="tag tag-primary">{{$detalleministerio->rol->nombre}}</div></a> @endforeach</td>
               </tr>
 
               @endforeach @else
@@ -173,13 +173,15 @@
                                            </a> @else
                           <a href="{{action('MiembroController@show', $detalleministerio->miembro->id)}}">
                                            <img alt="Avatar" class="md-avatar rounded-circle" src="{{ Storage::url($detalleministerio->miembro->fotoperfil)}}" >
-                                           </a> @isset($detalleministerio->miembro->nombre)
+                                           </a>
+                                          @endif 
+                                           @isset($detalleministerio->miembro->nombre)
                           <h6 class="display-inline-block">{{title_case($detalleministerio->miembro->nombre.' '.$detalleministerio->miembro->apellido1)}}</h6>
                           <a class="btn btn-outline-danger btn-sm display-inline-block" style="color:#DA4453" data-id={{$detalleministerio->id}} data-action={{action('DetalleMinisterioController@destroy','test')}} data-toggle="modal" data-target="#delete">
                             <div class="icon-trash3"></div> 
                         </a>
                           @endisset
-                          <div class="row text-muted">
+                          <div class="row text-muted font-small-2">
                             <span>
                           <i class="icon-address-book btn-sm"></i>{{title_case($detalleministerio->miembro->direccion)}}
 
@@ -189,9 +191,6 @@
                       <i class="icon-phone btn-sm"></i>{{$detalleministerio->miembro->celular}}
                         </span>
                           </div>
-
-                          @endif
-
 
                         </li>
                       </ul>

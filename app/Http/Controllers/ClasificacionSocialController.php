@@ -20,9 +20,7 @@ class ClasificacionSocialController extends Controller
      */
     public function index(Request $request)
     {
-        $nombre=$request->get('nombreb');
-
-        $clasificacionessociales=ClasificacionSocial::orderBy('id','DESC')->nombre($nombre)->paginate(7);
+        $clasificacionessociales=ClasificacionSocial::orderBy('id','DESC')->get();
         return view('ClasificacionSocial.index',compact('clasificacionessociales')); 
     }
 

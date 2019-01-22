@@ -19,9 +19,7 @@ class EstadoMembresiaController extends Controller
      */
     public function index(Request $request)
     {
-        $nombre=$request->get('nombreb');
-
-        $estadosmembresia=EstadoMembresia::orderBy('id','DESC')->nombre($nombre)->paginate(7);
+        $estadosmembresia=EstadoMembresia::orderBy('id','DESC')->paginate(7);
         return view('EstadoMembresia.index',compact('estadosmembresia')); 
 
     }

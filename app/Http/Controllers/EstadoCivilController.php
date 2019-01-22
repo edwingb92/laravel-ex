@@ -19,9 +19,7 @@ class EstadoCivilController extends Controller
      */
     public function index(Request $request)
     {
-        $nombre=$request->get('nombreb');
-
-        $estadosciviles=EstadoCivil::orderBy('id','DESC')->nombre($nombre)->paginate(7);
+        $estadosciviles=EstadoCivil::orderBy('id','DESC')->get();
         return view('EstadoCivil.index',compact('estadosciviles')); 
 
     }

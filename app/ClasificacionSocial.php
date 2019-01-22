@@ -10,12 +10,6 @@ class ClasificacionSocial extends Model
     protected $fillable = ['nombre'];
 
 
-public function scopeNombre($query,$nombre)
-{
-    if($nombre)
-    {
-        return $query->where('nombre','LIKE',"%$nombre%");
-    }
-}
+
 }
 

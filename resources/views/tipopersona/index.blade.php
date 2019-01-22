@@ -1,24 +1,10 @@
 @extends('layouts.layout') 
-@section('titulo', "Lista de Tipos de Persona") 
+@section('titulo')
+<h4 class="display-inline-block">Dones de Servicio</h4>&nbsp; @include('partials.botonnuevo')
+@endsection
 @section('contenido')
 <div class="col-xl-6 col-lg-12">
   
- 
-  <form class="form" method="get" open="{{ route('TipoPersona.index') }}" role="form">
-    {{ csrf_field() }}
-    <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6">
-        <div class="form-group right">
-          <input type="text" name="nombreb" id="nombreb" class="form-control border-primary" value="{{ old('nombreb') }}" placeholder="Nombre">
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group">
-          <input type="submit" value="Buscar" class="btn btn-primary mr-1">
-          <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Nuevo</button>
-        </div>
-      </div>
-  </form>
   
   <table id="mytable" class="table table-hover">
     <thead class="bg-grey bg-lighten-4 thead-light ">
@@ -48,7 +34,6 @@
       @endif
     </tbody>
   </table>
-  {{ $tipospersona->links() }}
   </div>
 
 
@@ -59,9 +44,9 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Editar Tipo de Persona</h4>
+              <h4 class="modal-title" id="myModalLabel">Editar Don de Servicio</h4>
             </div>
-            <form action="{{route('TipoPersona.update','test')}}" method="post">
+            <form action="{{route('DonServicio.update','test')}}" method="post">
               {{method_field('patch')}} {{csrf_field()}}
               <div class="modal-body">
                 <input type="hidden" name="id" id="id" value="">
@@ -87,7 +72,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               <h4 class="modal-title text-center" id="myModalLabel">Confirmar</h4>
             </div>
-            <form action="{{route('TipoPersona.destroy','test')}}" method="post">
+            <form action="{{route('DonServicio.destroy','test')}}" method="post">
               {{method_field('delete')}} {{csrf_field()}}
               <div class="modal-body">
                 <p class="text-center">
@@ -111,9 +96,9 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nuevo Tipo de Persona</h4>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Don de Servicio</h4>
               </div>
-              <form action="{{route('TipoPersona.store')}}" method="post">
+              <form action="{{route('DonServicio.store')}}" method="post">
                 {{csrf_field()}}
                 <div class="modal-body">
                   <input type="hidden" name="id" id="id" value="">
